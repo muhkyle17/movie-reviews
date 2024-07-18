@@ -1,8 +1,9 @@
 # Node.js dependencies
-node_modules/
+node_modules
 
 # Environment variables
 .env
+config.env
 
 
 # MOVIEREVIEWS_DB_URI=mongodb+srv://new-user_1:@Mfor12345@cluster0.vnf1dsj.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=Cluster0
