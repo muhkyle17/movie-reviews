@@ -1,25 +1,27 @@
-import app from './server.js'
-import mongodb from 'mongodb'
-import dotenv from 'dotenv'
+import { MongoClient, ServerApiVersion } from "mongodb";
 
-async function main() {
-  dotenv.config()
+const uri = process.env.MOVIEREVIEWS_DB_URI || "";
 
-  const client = new mongodb.MongoClient(process.env.MOVIEREVIEWS_DB_URI)
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
 
-  const port = process.env.port || 8000
+try {
+  // Connect the client to the server
+  await client.connect();
 
-  try {
-    // Connect to the MongoDB cluster
-    await client.connect()
+  // Send a ping to confirm a successful connection
+  await client.db("admin").command({ ping: 1 });
 
-    app.listen(5000, () => {
-      console.log('server is running on port: ' + port)
-    })
-  } catch (e) {
-    console.error(e)
-    process.exit(1)
-  }
+  console.log("Pinged your deployment. You successfully connected to MongoDB!");
+} catch (err) {
+  console.error(err);
 }
 
-main().catch(console.error)
+let db = client.db("employees");
+
+export default db;
