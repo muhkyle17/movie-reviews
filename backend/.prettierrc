@@ -1,0 +1,23 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "react/jsx-filename-extension": "off",
+    "import/extensions": "off"
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/__mocks__/*.js", "**/__mocks__/**/*.js"],
+      "env": {
+        "jest": true
+      },
+      "extends": ["plugin:testing-library/react"],
+      "plugins": ["testing-library"]
+    }
+  ]
+}
